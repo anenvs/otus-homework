@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-
+        //version2
         //task1. print text X times
         printTextCycle(5, "Mytext");
 
@@ -97,12 +97,12 @@ public class Main {
         }
         int[] finalArray = new int[biggerArrayLength];
 
-        for (int i = 0;i< biggerArrayLength;i++){
-            if (i<arr1.length)
+        for (int i = 0; i < biggerArrayLength; i++) {
+            if (i < arr1.length)
                 finalArray[i] += arr1[i];
-            if (i<arr2.length)
+            if (i < arr2.length)
                 finalArray[i] += arr2[i];
-            if (i<arr3.length)
+            if (i < arr3.length)
                 finalArray[i] += arr3[i];
         }
 
