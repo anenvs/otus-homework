@@ -28,22 +28,22 @@ public class Main {
         comparisonArray(array5);
 
         //additional task1.
-        int[] array_a1 = {1, 2, 3, 2, 8};
-        int[] array_a2 = {2, 4, 6, 4, 1, 3, 5};
-        int[] array_a3 = {5, 1, 5, 2, 3, 9};
-        sumArrays(array_a1, array_a2, array_a3);
+        int[] arrayA1 = {1, 2, 3, 2, 8};
+        int[] arrayA2 = {2, 4, 6, 4, 1, 3, 5};
+        int[] arrayA3 = {5, 1, 5, 2, 3, 9};
+        sumArrays(arrayA1, arrayA2, arrayA3);
 
         //additional task2.
-        int[] array_b1 = {1, 2, 3, 0, 7, -1};
-        findSumInsideArray(array_b1);
+        int[] arrayB1 = {1, 2, 3, 0, 7, -1};
+        findSumInsideArray(arrayB1);
 
         //additional task3.
-        int[] array_c1 = {4, 3, 2, 1};
-        increaseOrDecreaseCheck(array_c1);
+        int[] arrayC1 = {4, 3, 2, 1};
+        increaseOrDecreaseCheck(arrayC1);
 
         //additional task4. Array reverse
-        int[] array_d1 = {10, 20, 30, 40, 50};
-        reverseArray(array_d1);
+        int[] arrayD1 = {10, 20, 30, 40, 50};
+        reverseArray(arrayD1);
     }
 
     public static void printTextCycle(int counter, String text) {
@@ -96,80 +96,97 @@ public class Main {
             biggerArrayLength = arr3.length;
         }
         int[] finalArray = new int[biggerArrayLength];
-        int smallerArrayLength = Math.min(arr1.length, arr2.length);
-        if (smallerArrayLength > arr3.length) {
-            smallerArrayLength = arr3.length;
+
+        for (int i = 0;i< biggerArrayLength;i++){
+            if (i<arr1.length)
+                finalArray[i] += arr1[i];
+            if (i<arr2.length)
+                finalArray[i] += arr2[i];
+            if (i<arr3.length)
+                finalArray[i] += arr3[i];
         }
-        int nextArrayLength = 0;
 
-        for (int i = 0; i < smallerArrayLength; i++) {
-            finalArray[i] = arr1[i] + arr2[i] + arr3[i];
-        }
-
-        if (smallerArrayLength == arr1.length) {
-
-            nextArrayLength = Math.min(arr2.length, arr3.length);
-            if (smallerArrayLength == arr2.length) {
-                for (int i = smallerArrayLength; i < nextArrayLength; i++) {
-                    finalArray[i] = arr2[i] + arr3[i];
-                }
-
-            } else
-                for (int i = smallerArrayLength; i < nextArrayLength; i++) {
-                    finalArray[i] = arr3[i] + arr2[i];
-                }
-            if (biggerArrayLength == arr2.length) {
-                for (int i = nextArrayLength; i < biggerArrayLength; i++) {
-                    finalArray[i] = arr2[i];
-                }
-            } else {
-                for (int i = nextArrayLength; i < biggerArrayLength; i++) {
-                    finalArray[i] = arr3[i];
-                }
-
-            }
-        } else if (smallerArrayLength == arr2.length) {
-            nextArrayLength = Math.min(arr1.length, arr3.length);
-            if (smallerArrayLength == arr1.length) {
-                for (int i = smallerArrayLength; i < nextArrayLength; i++) {
-                    finalArray[i] = arr1[i] + arr3[i];
-                }
-
-            } else
-                for (int i = smallerArrayLength; i < nextArrayLength; i++) {
-                    finalArray[i] = arr3[i] + arr1[i];
-                }
-            if (biggerArrayLength == arr1.length) {
-                for (int i = nextArrayLength; i < biggerArrayLength; i++) {
-                    finalArray[i] = arr1[i];
-                }
-            } else {
-                for (int i = nextArrayLength; i < biggerArrayLength; i++) {
-                    finalArray[i] = arr3[i];
-                }
-            }
-        } else {
-            nextArrayLength = Math.min(arr1.length, arr2.length);
-            if (smallerArrayLength == arr1.length) {
-                for (int i = smallerArrayLength; i < nextArrayLength; i++) {
-                    finalArray[i] = arr1[i] + arr2[i];
-                }
-
-            } else ;
-            for (int i = smallerArrayLength; i < nextArrayLength; i++) {
-                finalArray[i] = arr2[i] + arr1[i];
-            }
-            if (biggerArrayLength == arr2.length) {
-
-                for (int i = nextArrayLength; i < biggerArrayLength; i++) {
-                    finalArray[i] = arr2[i];
-                }
-            } else {
-                for (int i = nextArrayLength; i < biggerArrayLength; i++) {
-                    finalArray[i] = arr1[i];
-                }
-            }
-        }
+//        int biggerArrayLength = Math.max(arr1.length, arr2.length);
+//        if (biggerArrayLength < arr3.length) {
+//            biggerArrayLength = arr3.length;
+//        }
+//        int[] finalArray = new int[biggerArrayLength];
+//        int smallerArrayLength = Math.min(arr1.length, arr2.length);
+//        if (smallerArrayLength > arr3.length) {
+//            smallerArrayLength = arr3.length;
+//        }
+//        int nextArrayLength = 0;
+//
+//        for (int i = 0; i < smallerArrayLength; i++) {
+//            finalArray[i] = arr1[i] + arr2[i] + arr3[i];
+//        }
+//
+//
+//
+//        if (smallerArrayLength == arr1.length) {
+//
+//            nextArrayLength = Math.min(arr2.length, arr3.length);
+//            if (smallerArrayLength == arr2.length) {
+//                for (int i = smallerArrayLength; i < nextArrayLength; i++) {
+//                    finalArray[i] = arr2[i] + arr3[i];
+//                }
+//
+//            } else
+//                for (int i = smallerArrayLength; i < nextArrayLength; i++) {
+//                    finalArray[i] = arr3[i] + arr2[i];
+//                }
+//            if (biggerArrayLength == arr2.length) {
+//                for (int i = nextArrayLength; i < biggerArrayLength; i++) {
+//                    finalArray[i] = arr2[i];
+//                }
+//            } else {
+//                for (int i = nextArrayLength; i < biggerArrayLength; i++) {
+//                    finalArray[i] = arr3[i];
+//                }
+//
+//            }
+//        } else if (smallerArrayLength == arr2.length) {
+//            nextArrayLength = Math.min(arr1.length, arr3.length);
+//            if (smallerArrayLength == arr1.length) {
+//                for (int i = smallerArrayLength; i < nextArrayLength; i++) {
+//                    finalArray[i] = arr1[i] + arr3[i];
+//                }
+//
+//            } else
+//                for (int i = smallerArrayLength; i < nextArrayLength; i++) {
+//                    finalArray[i] = arr3[i] + arr1[i];
+//                }
+//            if (biggerArrayLength == arr1.length) {
+//                for (int i = nextArrayLength; i < biggerArrayLength; i++) {
+//                    finalArray[i] = arr1[i];
+//                }
+//            } else {
+//                for (int i = nextArrayLength; i < biggerArrayLength; i++) {
+//                    finalArray[i] = arr3[i];
+//                }
+//            }
+//        } else {
+//            nextArrayLength = Math.min(arr1.length, arr2.length);
+//            if (smallerArrayLength == arr1.length) {
+//                for (int i = smallerArrayLength; i < nextArrayLength; i++) {
+//                    finalArray[i] = arr1[i] + arr2[i];
+//                }
+//
+//            } else ;
+//            for (int i = smallerArrayLength; i < nextArrayLength; i++) {
+//                finalArray[i] = arr2[i] + arr1[i];
+//            }
+//            if (biggerArrayLength == arr2.length) {
+//
+//                for (int i = nextArrayLength; i < biggerArrayLength; i++) {
+//                    finalArray[i] = arr2[i];
+//                }
+//            } else {
+//                for (int i = nextArrayLength; i < biggerArrayLength; i++) {
+//                    finalArray[i] = arr1[i];
+//                }
+//            }
+//        }
         System.out.println(Arrays.toString(finalArray));
     }
 
@@ -189,7 +206,7 @@ public class Main {
             System.out.println("Массив возрастающий");
         } else if (arr.length == checkArrayDecrease) {
             System.out.println("Массив убывающий");
-        }
+        } else System.out.println("Массив не отсортирован");
     }
 
     public static void findSumInsideArray(int[] arr) {
@@ -210,10 +227,14 @@ public class Main {
     }
 
     public static void reverseArray(int[] arr) {
-        String s = "[";
-        for (int i = arr.length - 1; i >= 0; i--) {
-            s += arr[i] + ", ";
+        for (int i = 0; i < arr.length; i++) {
         }
-        System.out.println(s.substring(0, s.length() - 2) + "]");
+        for (int i = 0; i < arr.length / 2; i++) {
+            int temp = arr[i];
+            arr[i] = arr[arr.length - 1 - i];
+            arr[arr.length - 1 - i] = temp;
+        }
+        System.out.println("Массив после реверса:");
+        System.out.println(Arrays.toString(arr));
     }
 }
