@@ -37,10 +37,10 @@ public class Main {
 
         //проверка невозможности положить, если есть что-то внутри, либо она закрыта
 
-        box.setIsOpen(false);
+        box.close();
         box.fillBox("Сухарики семга сыр");
         box.printBoxInfo();
-        box.setIsOpen(true);
+        box.open();
 
         //Выкидываем предмет
         box.cleanBox();

@@ -1,6 +1,11 @@
 package ru.otus.homework4;
 
 public class User {
+    private String name;
+    private String surName;
+    private String fatherName;
+    private int birthday;
+    private String mail;
     public String getName() {
         return name;
     }
@@ -45,12 +50,6 @@ public class User {
         this.mail = mail;
         return this;
     }
-
-    private String name;
-    private String surName;
-    private String fatherName;
-    private int birthday;
-    private String mail;
 
     public User(String name, String surName, String fatherName, int birthday, String mail) {
         this.name = name;
