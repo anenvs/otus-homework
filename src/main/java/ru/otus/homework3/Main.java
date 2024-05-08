@@ -22,7 +22,7 @@ public class Main {
         System.out.println(maxNumber);
 
         //task 5 secondLineSum
-        int[][] arrayT5 = {{5, 6, 14, 3}, {}};
+        int[][] arrayT5 = {{5, 6, 14, 3}};
         int lineSum = secondLineSum(arrayT5);
         System.out.println(lineSum);
     }
@@ -81,6 +81,11 @@ public class Main {
     public static int secondLineSum(int[][] array) {
         int lineSum = 0;
         int counter = 0;
+
+        if (array.length < 2) {
+            return -1;
+        }
+
         for (int i = 1; i <= 1; i++) {
             for (int j = 0; j < array[i].length; j++) {
                 lineSum += array[i][j];
