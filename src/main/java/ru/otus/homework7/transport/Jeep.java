@@ -2,7 +2,7 @@ package ru.otus.homework7.transport;
 
 import ru.otus.homework7.domain.Human;
 
-public class Jeep extends Transport{
+public class Jeep extends Transport {
     private int fuel;
 
     public Jeep(String name, int fuel) {

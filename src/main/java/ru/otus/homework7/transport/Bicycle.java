@@ -28,3 +28,5 @@ public class Bicycle extends Transport {
         return terrainType != TerrainType.SWAMP;
     }
 }
+
+

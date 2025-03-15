@@ -14,5 +14,4 @@ public abstract class Transport {
     }
     public abstract void move(int distance, TerrainType terrainType, Human human);
     public abstract boolean canMoveOnCurrentTerrain(TerrainType terrainType);
-
 }
