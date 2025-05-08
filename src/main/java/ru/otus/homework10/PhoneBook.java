@@ -1,9 +1,6 @@
 package ru.otus.homework10;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PhoneBook {
     private Map<String, List<String>> nameToPhoneNumbers;
@@ -24,7 +21,7 @@ public class PhoneBook {
     }
 
     public List<String> find(String name) {
-        return nameToPhoneNumbers.getOrDefault(name, new ArrayList<>());
+        return nameToPhoneNumbers.getOrDefault(name, Collections.emptyList());
     }
 
     public boolean containsPhoneNumber(String phoneNumber) {
