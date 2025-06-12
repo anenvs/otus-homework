@@ -10,56 +10,78 @@ public class Server {
 
             while (true) {
                 try (Socket clientSocket = serverSocket.accept();
-                     BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                     PrintWriter printWriter = new PrintWriter(clientSocket.getOutputStream(), true)) {
+                     BufferedReader reader = new BufferedReader(
+                             new InputStreamReader(clientSocket.getInputStream()));
+                     PrintWriter writer = new PrintWriter(
+                             clientSocket.getOutputStream(), true)) {
 
-                    System.out.println("Клиент подключен: " + clientSocket.getInetAddress());
-
-                    printWriter.println("Доступные операции: +, - , * , /");
-                    printWriter.println("Введите запрос в формате: число1 операция число2 (например: 5 + 3)");
-
-                    String request = reader.readLine();
-                    System.out.println("Получен запрос: " + request);
-
-                    try {
-                        String[] parts = request.split(" ");
-                        double num1 = Double.parseDouble(parts[0]);
-                        String operation = parts[1];
-                        double num2 = Double.parseDouble(parts[2]);
-                        double result;
-
-                        switch (operation) {
-                            case "+":
-                                result = num1 + num2;
-                                break;
-                            case "-":
-                                result = num1 - num2;
-                                break;
-                            case "*":
-                                result = num1 * num2;
-                                break;
-                            case "/":
-                                if (num2 == 0) {
-                                    printWriter.println("Ошибка: деление на ноль!");
-                                    continue;
-                                }
-                                result = num1 / num2;
-                                break;
-                            default:
-                                printWriter.println("Ошибка: неизвестная операция: " + operation);
-                                continue;
-                        }
-
-                        printWriter.println("Результат: " + result);
-                    } catch (Exception e) {
-                        printWriter.println("Ошибка: неверный формат запроса. Используйте: число1 операция число2");
-                    }
+                    handleClientConnection(reader, writer);
                 } catch (IOException e) {
-                    System.out.println("Ошибка при работе с клиентом: " + e.getMessage());
+                    System.out.println("Ошибка подключения: " + e.getMessage());
                 }
             }
         } catch (IOException e) {
             System.out.println("Не удалось запустить сервер: " + e.getMessage());
+        }
+    }
+
+    private static void handleClientConnection(BufferedReader reader, PrintWriter writer) {
+        try {
+            writer.println("Доступные операции: +, -, *, /");
+            writer.println("Формат запроса: число1 операция число2 (пример: 5 + 3)");
+
+            String request = reader.readLine();
+            System.out.println("Получен запрос: " + request);
+
+            processRequest(request, writer);
+        } catch (IOException e) {
+            System.out.println("Ошибка при чтении запроса: " + e.getMessage());
+        }
+    }
+
+    private static void processRequest(String request, PrintWriter writer) {
+        if (request == null || request.trim().isEmpty()) {
+            writer.println("Ошибка: пустой запрос");
+            return;
+        }
+
+        String[] parts = request.split("\\s+");
+        if (parts.length != 3) {
+            writer.println("Ошибка: неверный формат. Используйте: число1 операция число2");
+            return;
+        }
+
+        try {
+            double num1 = Double.parseDouble(parts[0]);
+            double num2 = Double.parseDouble(parts[2]);
+            String operation = parts[1];
+
+            writer.println(calculateAndFormatResult(num1, operation, num2));
+        } catch (NumberFormatException e) {
+            writer.println("Ошибка: неверный формат чисел");
+        } catch (Exception e) {
+            writer.println("Ошибка: " + e.getMessage());
+        }
+    }
+
+    private static String calculateAndFormatResult(double num1, String operation, double num2) {
+        try {
+            return "Результат: " + calculate(num1, operation, num2);
+        } catch (ArithmeticException | IllegalArgumentException e) {
+            return "Ошибка: " + e.getMessage();
+        }
+    }
+
+    private static double calculate(double num1, String operation, double num2) {
+        switch (operation) {
+            case "+": return num1 + num2;
+            case "-": return num1 - num2;
+            case "*": return num1 * num2;
+            case "/":
+                if (num2 == 0) throw new ArithmeticException("деление на ноль");
+                return num1 / num2;
+            default:
+                throw new IllegalArgumentException("неизвестная операция: " + operation);
         }
     }
 }
